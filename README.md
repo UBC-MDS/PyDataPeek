@@ -12,26 +12,6 @@ Python Boilerplate contains all the boilerplate you need to create a Python pack
 pip install -i https://test.pypi.org/simple/ PyDataPeek
 ```
 
-### Features
-- TODO
-
-### Dependencies
-
-- TODO
-
-### Usage
-
-- TODO
-
-### Documentation
-The official documentation is hosted on Read the Docs: <https://PyDataPeek.readthedocs.io/en/latest/>
-
-### Credits
-This package was created with Cookiecutter and the UBC-MDS/cookiecutter-ubc-mds project template, modified from the [pyOpenSci/cookiecutter-pyopensci](https://github.com/pyOpenSci/cookiecutter-pyopensci) project template and the [audreyr/cookiecutter-pypackage](https://github.com/audreyr/cookiecutter-pypackage).
-
-
-# PyDataPeek
-
 ### Project Proposal
 As data scientists, we are expected to orient business users to the datasets we are analyzing in a way that is accessible and easy to understand. This process is the first step to building trust in the analysis.
 
@@ -53,6 +33,15 @@ All functions take in csv or Excel files as inputs to generate a user-friendly o
 - [Python Altair](https://altair-viz.github.io): ...
 - [Python Seaborn](https://seaborn.pydata.org): ...
 - [Python WordCloud](https://github.com/amueller/word_cloud): ...
+
+### Documentation
+The official documentation is hosted on Read the Docs: <https://PyDataPeek.readthedocs.io/en/latest/>
+
+### Credits
+This package was created with Cookiecutter and the UBC-MDS/cookiecutter-ubc-mds project template, modified from the [pyOpenSci/cookiecutter-pyopensci](https://github.com/pyOpenSci/cookiecutter-pyopensci) project template and the [audreyr/cookiecutter-pypackage](https://github.com/audreyr/cookiecutter-pypackage).
+
+
+
 
 
 
