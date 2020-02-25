@@ -4,14 +4,6 @@
 
 [![Documentation Status](https://readthedocs.org/projects/pydatapeek/badge/?version=latest)](https://pydatapeek.readthedocs.io/en/latest/?badge=latest)
 
-Python Boilerplate contains all the boilerplate you need to create a Python package.
-
-### Installation:
-
-```
-pip install -i https://test.pypi.org/simple/ PyDataPeek
-```
-
 ### Project Proposal
 As data scientists, we are expected to orient business users to the datasets we are analyzing in a way that is accessible and easy to understand. This process is the first step to building trust in the analysis.
 
@@ -33,6 +25,14 @@ All functions take in csv or Excel files as inputs to generate a user-friendly o
 - [Python Altair](https://altair-viz.github.io): ...
 - [Python Seaborn](https://seaborn.pydata.org): ...
 - [Python WordCloud](https://github.com/amueller/word_cloud): ...
+
+
+### Installation:
+This project is under development! Upon it's first release, it can be installed with the following instructions.
+
+```
+pip install -i https://test.pypi.org/simple/ PyDataPeek
+```
 
 ### Documentation
 The official documentation is hosted on Read the Docs: <https://PyDataPeek.readthedocs.io/en/latest/>
