@@ -1,6 +1,6 @@
 ## PyDataPeek 
 
-![](https://github.com/mirohu/PyDataPeek/workflows/build/badge.svg) [![codecov](https://codecov.io/gh/mirohu/foocat/branch/master/graph/badge.svg)](https://codecov.io/gh/mirohu/PyDataPeek) ![Release](https://github.com/mirohu/PyDataPeek/workflows/Release/badge.svg)
+![](https://github.com/mirohu/pydatapeek/workflows/build/badge.svg) [![codecov](https://codecov.io/gh/mirohu/foocat/branch/master/graph/badge.svg)](https://codecov.io/gh/mirohu/pydatapeek) ![Release](https://github.com/mirohu/pydatapeek/workflows/Release/badge.svg)
 
 [![Documentation Status](https://readthedocs.org/projects/pydatapeek/badge/?version=latest)](https://pydatapeek.readthedocs.io/en/latest/?badge=latest)
 
