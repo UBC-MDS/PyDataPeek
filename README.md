@@ -2,7 +2,7 @@
 
 ![](https://github.com/mirohu/PyDataPeek/workflows/build/badge.svg) [![codecov](https://codecov.io/gh/mirohu/foocat/branch/master/graph/badge.svg)](https://codecov.io/gh/mirohu/PyDataPeek) ![Release](https://github.com/mirohu/PyDataPeek/workflows/Release/badge.svg)
 
-[![Documentation Status](https://readthedocs.org/projects/PyDataPeek/badge/?version=latest)](https://PyDataPeek.readthedocs.io/en/latest/?badge=latest)
+[![Documentation Status](https://readthedocs.org/projects/pydatapeek/badge/?version=latest)](https://pydatapeek.readthedocs.io/en/latest/?badge=latest)
 
 Python Boilerplate contains all the boilerplate you need to create a Python package.
 
