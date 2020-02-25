@@ -4,9 +4,7 @@ version = "0.1.0"
 description = ""
 authors = ["Miro (Shangjing) HU <mirohu@outlook.com>"]
 license = "MIT"
-packages = [
-    { include = "PackageName"},
-]
+
 
 [tool.poetry.dependencies]
 python = "^3.7"
