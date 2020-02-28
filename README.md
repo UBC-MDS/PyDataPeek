@@ -24,7 +24,6 @@ Several Python packages are available that support exploratory data analysis but
 - [Python Pandas](https://pandas.pydata.org): Our package will leverage `pandas` functionality to manipulate dataframes. Our package functionality overlaps with some functions such as [`pd.describe`](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.describe.html) which computes summary statistics for dataframes. Our package differs in that we aim to offer summary statistics dependent on data type, including long form text data. 
 - [Python Altair](https://altair-viz.github.io), [Python Seaborn](https://seaborn.pydata.org) and [Python WordCloud](https://github.com/amueller/word_cloud): We will uses these visualization packages to create visualizations that summarize the dataset as well as user-defined features in the dataset. 
 
-
 ### Installation:
 This project is under development! Upon it's first release, it can be installed with the following instructions.
 
