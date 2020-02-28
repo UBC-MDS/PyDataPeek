@@ -3,7 +3,7 @@ Script used take a csv file path, a list of numerical column names
     and returns a png file of histogram(s)
 
 Usage:
-  explore_w_histograms.py --file=<file_path> --columns=<columns_list>
+  explore_w_histograms.py --file=<file_path> --columns=<column_names>
 Example:
   python explore_w_histograms.py --file=toy_dataset.csv --columns=Age,Illness
 """
@@ -15,17 +15,17 @@ from altair_saver import save
 opt = docopt(__doc__)
 
 
-def main(file, columns_list):
+def main(file, column_names):
     """
-    take a csv file, a list of numerical column names 
+    take a csv file, a string of numerical column names
     and returns a png file of histogram(s)
     
     Parameters
     --------
     file:
         a csv file path
-    coloumns: 
-        a list of numerical column names as strings
+    coloumn_names: 
+        a string of numerical column names, seperate with comma
     
     
     Returns
@@ -34,7 +34,7 @@ def main(file, columns_list):
     
     Example
     -------
-    >>> explore_w_histograms(['volumn', 'date'])
+    >>> explore_w_histograms('toy_dataset.csv', "volumn,date"])
     """
     # Check filetype and read file if valid
     if file.endswith('.csv'):
@@ -44,7 +44,7 @@ def main(file, columns_list):
             df = pd.read_excel(file, sheet_name=sheet_name)
         except:
             print("Please use a valid csv or excel file.")
-    columns = columns_list.replace(',',' ').split()
+    columns = column_names.replace(',',' ').split()
     
     for c in range(0, len(columns)):
         
