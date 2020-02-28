@@ -1,5 +1,5 @@
 """ 
-Script used take a csv file path, a list of numerical column names 
+Script used take a csv file path, a string of numerical column names 
     and returns a png file of histogram(s)
 
 Usage:
