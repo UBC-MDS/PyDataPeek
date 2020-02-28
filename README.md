@@ -20,7 +20,7 @@ All functions take in csv or Excel files as inputs to generate user-friendly sum
 
 ### How this fits in the Python ecosystem
 Several Python packages are available that support exploratory data analysis but none are specific to the use case we are targetting - a simple and technically friendly way of summarizing data. 
-- [Pandas Profiling](https://pandas-profiling.github.io/pandas-profiling/docs/) generates a report of a dataframe that has some of the features we have proposed. Our package will differ from this by offering the user simpler summaries that are friendlier to a non-technical audience.
+- [Pandas Profiling](https://pandas-profiling.github.io/pandas-profiling/docs/): This package generates a report of a dataframe that has some of the features we have proposed. Our package will differ from this by offering the user simpler summaries that are friendlier to a non-technical audience.
 - [Python Pandas](https://pandas.pydata.org): Our package will leverage `pandas` functionality to manipulate dataframes. Our package functionality overlaps with some functions such as [`pd.describe`](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.describe.html) which computes summary statistics for dataframes. Our package differs in that we aim to offer summary statistics dependent on data type, including long form text data. 
 - [Python Altair](https://altair-viz.github.io), [Python Seaborn](https://seaborn.pydata.org) and [Python WordCloud](https://github.com/amueller/word_cloud): We will uses these visualization packages to create visualizations that summarize the dataset as well as user-defined features in the dataset. 
 
