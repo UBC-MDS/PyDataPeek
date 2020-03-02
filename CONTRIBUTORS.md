@@ -3,8 +3,14 @@
 
 ## Development Lead
 
-* PyDataPeek <audreyr@example.com>
+* PyDataPeek 
 
 ## Contributors
 
-None yet. Why not be the first?
+Alistair Clark
+
+Shangjing Hu
+
+Thomas Pin
+
+Monique Wong
