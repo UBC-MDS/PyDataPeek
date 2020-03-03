@@ -40,5 +40,5 @@ def missing_data_overview(file, sheet_name=0, dir=''):
     plt.title("Heatmap of missing values", fontsize=20);
 
     # Save and return image file
-    p = plt.savefig(f"./{dir}/{sheet_name}_heatmap.png", orientation='landscape', optimize=True, pad_inches=2, bbox_inches='tight');
+    p = plt.savefig(f"{dir}/{sheet_name}_heatmap.png", orientation='landscape', optimize=True, pad_inches=2, bbox_inches='tight');
     return p

@@ -15,6 +15,9 @@ def make_files(tmpdir_factory):
     fn = tmpdir_factory.mktemp('data')
     df.to_pickle(str(fn.join('df.pkl')))
     df.to_csv(str(fn.join('df.csv')))
+    df.to_excel(str(fn.join('df.xls')))
+    df.to_excel(str(fn.join('df.xlsx')))
+    # missing.missing_data_overview(str(make_files.join('df.pkl')))
     return fn
     #df.to_excel('df.xlsx')
     #df.to_excel('df.xls')
@@ -38,14 +41,13 @@ def make_files(tmpdir_factory):
 #
 #
 
+def test_excel_input(make_files):
+    with pytest.raises(ValueError):
+        missing.missing_data_overview(str(make_files.join('df.xls')), dir = str(make_files))
+    with pytest.raises(ValueError):
+        missing.missing_data_overview(str(make_files.join('df.xlsx')))
+
 def test_other_input(make_files):
-    # df = pd.DataFrame({ 'A' : 1.,
-    #                      'B' : pd.Timestamp('20130102'),
-    #                      'C' : pd.Series(1,index=list(range(4)),dtype='float32'),
-    #                      'D' : np.array([3] * 4,dtype='int32'),
-    #                      'E' : pd.Categorical(["test","train","test","train"]),
-    #                      'F' : 'foo' })
-    # df.to_pickle('df.pkl')
     with pytest.raises(ValueError):
         missing.missing_data_overview(str(make_files.join('df.pkl')))
 
