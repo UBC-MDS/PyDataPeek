@@ -26,11 +26,12 @@ def missing_data_overview(file, sheet_name=0, dir=''):
     # Check filetype and read file if valid
     if file.endswith('.csv'):
         df = pd.read_csv(file)
+        print("TEST")
     else:
         try:
             df = pd.read_excel(file, sheet_name=sheet_name)
         except:
-            print("Please use a valid csv or excel file.")
+            raise ValueError("Please use a valid csv or excel file.")
     
     # Create heatmap
     plt.figure(figsize=(40, 20));
