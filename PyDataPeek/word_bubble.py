@@ -94,19 +94,19 @@ def make_cloud(formated_words, stopwords, max_words, width, height):
     
   
     # plot the WordCloud image                        
-    plt.figure(figsize = (8, 8), facecolor = None) 
+    fig = plt.figure(figsize = (8, 8), facecolor = None) 
     plt.imshow(wordcloud) 
     plt.axis("off") 
     plt.tight_layout(pad = 0) 
 
-    return plt
+    return fig
 
 from wordcloud import WordCloud, STOPWORDS 
 import matplotlib.pyplot as plt 
 import pandas as pd
 
 
-def word_bubble(file, sheet_name=0, img_dir='word_bubble.png', column='', max_words=50, height=800, width=800):
+def word_bubble(file, sheet_name=0, img_dir='', column='', max_words=50, height=800, width=800):
     """Return an image of a word bubble of qualitative responses (text) from a column(s) from a spreadsheet.
 
 
@@ -148,9 +148,6 @@ def word_bubble(file, sheet_name=0, img_dir='word_bubble.png', column='', max_wo
     formated_words, stopwords = make_formated_words(df)
     
     plt = make_cloud(formated_words, stopwords, max_words, width, height)
-    
-    if img_dir.endswith('.png'):
-        plt.savefig(img_dir)
-    else:
-        raise ValueError("Please save the path to end with '.png' such as 'word_bubble.png'")    
+    p = plt.savefig(f"{img_dir}{sheet_name}_wordcloud.png", orientation='landscape', optimize=True, pad_inches=2, bbox_inches='tight');
+    return p   
     
