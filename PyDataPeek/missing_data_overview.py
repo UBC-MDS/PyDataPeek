@@ -67,7 +67,7 @@ def missing_data_overview(file, sheet_name=0, dir=''):
     
     Example
     -------
-    >>> missing_data_overview(customers.xlsx, sheet_name='2019', dir='report')
+    >>> missing_data_overview("customers.xlsx", sheet_name='2019', dir='report')
     """
     df = read_file(file, sheet_name=sheet_name)
     fig = make_plot(df)
