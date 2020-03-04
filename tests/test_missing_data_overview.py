@@ -22,11 +22,12 @@ def make_files(tmpdir_factory):
     # Create different file types to test
     df.to_pickle(str(fn.join('df.pkl')))
     df.to_csv(str(fn.join('df.csv')))
-    df.to_excel(str(fn.join('df.xls')))
-    df.to_excel(str(fn.join('df.xlsx')))
+    df.to_excel(str(fn.join('df.xls')), sheet_name='abc')
+    df.to_excel(str(fn.join('df.xlsx')), sheet_name='abc')
 
     # Create and save image 
     missing.missing_data_overview(str(fn.join('df.csv')), dir = str(fn))
+    missing.missing_data_overview(str(fn.join('df.csv')), dir = str(fn), sheet_name='abc')
     return fn
 
 def test_csv_input(make_files):
@@ -50,3 +51,6 @@ def test_plot(make_files):
 
 def test_saved_file(make_files):
    assert os.path.isfile(str(make_files) + '0_heatmap.png')
+
+def test_saved_file_withdir(make_files):
+   assert os.path.isfile(str(make_files) + 'abc_heatmap.png')
