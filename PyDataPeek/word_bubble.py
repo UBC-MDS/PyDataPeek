@@ -26,7 +26,43 @@ def read_file(file, sheet_name=0):
             raise ValueError("Please use a valid csv or excel file.")
     return df
 
-def sample_data(file, sheet_name=0, dir='', column='', max=50, height=8, width=8):
+def make_formated_words(df):
+    """Helper function used to make the column into a vector that can be 
+    read into the cloudword function object.
+    
+    Checks if file type is a .csv or excel. If not, returns a ValueError.
+    Parameters
+    ----------
+    file : str
+        the name of the file, including the filetype extension
+    sheet_name : int, optional
+        if passing an excel file, the name of the sheet to analyze, by default 0
+    Returns
+    -------
+    pandas.Dataframe
+        pandas dataframe containing data from file
+    """
+    formated_words = ' '
+    stopwords = set(STOPWORDS)
+    
+    words = str(df)
+    tokens = words.split()
+    
+    for i in range(len(tokens)): 
+        tokens[i] = tokens[i].lower() 
+    
+    for words in tokens: 
+        formated_words = formated_words + words + ' '
+        
+    return formated_words, stopwords
+
+from wordcloud import WordCloud, STOPWORDS 
+import matplotlib.pyplot as plt 
+import pandas as pd
+from sklearn.feature_extraction.text import CountVectorizer
+
+
+def sample_data(file, sheet_name=0, dir='', column='', max_words=50, height=8, width=8):
     """Return an image of a word bubble of qualitative responses (text) from a column(s) from a spreadsheet.
 
 
@@ -62,22 +98,15 @@ def sample_data(file, sheet_name=0, dir='', column='', max=50, height=8, width=8
             
     df = df[column]
     
-    formated_words = ' '
-    stopwords = set(STOPWORDS)
+    formated_words, stopwords = make_formated_words(df)
     
-    words = str(df)
-    tokens = words.split()
     
-    for i in range(len(tokens)): 
-        tokens[i] = tokens[i].lower() 
-    
-    for words in tokens: 
-        formated_words = formated_words + words + ' '
-        
     wordcloud = WordCloud(width = 800, height = 800, 
                 background_color ='white', 
                 stopwords = stopwords, 
-                min_font_size = 10).generate(formated_words) 
+                min_font_size = 10,
+                max_words=max_words).generate(formated_words)
+    
   
     # plot the WordCloud image                        
     plt.figure(figsize = (8, 8), facecolor = None) 
