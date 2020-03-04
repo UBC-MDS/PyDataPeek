@@ -1,7 +1,7 @@
 from wordcloud import WordCloud, STOPWORDS 
 import matplotlib.pyplot as plt 
 import pandas as pd
-from sklearn.feature_extraction.text import CountVectorizer
+
 
 def read_file(file, sheet_name=0):
     """Helper function used to read the file and return a pandas dataframe.
@@ -33,19 +33,23 @@ def make_formated_words(df):
     Checks if file type is a .csv or excel. If not, returns a ValueError.
     Parameters
     ----------
-    file : str
-        the name of the file, including the filetype extension
-    sheet_name : int, optional
-        if passing an excel file, the name of the sheet to analyze, by default 0
+    df : pandas.Dataframe
+        The column(s) of the dataframe 
+    
     Returns
     -------
-    pandas.Dataframe
-        pandas dataframe containing data from file
+    formated_words: str
+        formated str for that can be inputed into the Wordcloud function
+    stop_words: set
+        set of english stopwords to be removed from the Wordcloud
     """
     formated_words = ' '
     stopwords = set(STOPWORDS)
     
-    words = str(df)
+    try:
+        words = str(df)
+    except:
+        raise ValueError("Column cannot be formated for processing, please try a different one")
     tokens = words.split()
     
     for i in range(len(tokens)): 
@@ -56,13 +60,53 @@ def make_formated_words(df):
         
     return formated_words, stopwords
 
+
+def make_cloud(formated_words, stopwords, max_words, width, height):
+    """Return an plt of a word bubble of qualitative responses (text) from a column(s) from a spreadsheet.
+
+     Parameters
+     ----------
+     formated_words: str
+        formated str for that can be inputed into the Wordcloud function
+     stop_words: set
+        set of english stopwords to be removed from the Wordcloud
+     max_words : int
+         max number of words in the word bubble, default = 50 words
+     height : int
+        the height of the outputted image, default = 8 inches
+     width : int 
+        the width of the outputted image, default = 8 inches
+
+
+     Returns
+     -------
+     plt : matplotlib.pyplot.plt
+        returns an image of a word bubble by specified width and height
+        and includes max number of words.
+
+     """
+    #create wordcloud object
+    wordcloud = WordCloud(width = width, height = height, 
+                background_color ='white', 
+                stopwords = stopwords, 
+                min_font_size = 10,
+                max_words=max_words).generate(formated_words)
+    
+  
+    # plot the WordCloud image                        
+    plt.figure(figsize = (8, 8), facecolor = None) 
+    plt.imshow(wordcloud) 
+    plt.axis("off") 
+    plt.tight_layout(pad = 0) 
+
+    return plt
+
 from wordcloud import WordCloud, STOPWORDS 
 import matplotlib.pyplot as plt 
 import pandas as pd
-from sklearn.feature_extraction.text import CountVectorizer
 
 
-def sample_data(file, sheet_name=0, dir='', column='', max_words=50, height=8, width=8):
+def word_bubble(file, sheet_name=0, img_dir='word_bubble.png', column='', max_words=50, height=800, width=800):
     """Return an image of a word bubble of qualitative responses (text) from a column(s) from a spreadsheet.
 
 
@@ -79,9 +123,9 @@ def sample_data(file, sheet_name=0, dir='', column='', max_words=50, height=8, w
      max : int
          max number of words in the word bubble, default = 50 words
      height : int
-        the height of the outputted image, default = 8 inches
+        the height of the outputted image, default = 800 pixels
      width : int 
-        the width of the outputted image, default = 8 inches
+        the width of the outputted image, default = 800 pixels
 
 
      Returns
@@ -92,26 +136,21 @@ def sample_data(file, sheet_name=0, dir='', column='', max_words=50, height=8, w
 
      Example
      -------
-     >>> sample_data(customers.xlsx, sheet_name='2019', dir='report', column='review', max=50, height=7, width=7)
+     >>> word_bubble(file='imdb_sample', sheet_name=0, img_dir='word_bubble.png', column='review', max_words=50, height=800, width=800)
      """
     df = read_file(file=file, sheet_name=sheet_name)
-            
-    df = df[column]
+    
+    try:
+        df = df[column]
+    except:
+        raise ValueError("Make sure column name is in your data!") 
     
     formated_words, stopwords = make_formated_words(df)
     
+    plt = make_cloud(formated_words, stopwords, max_words, width, height)
     
-    wordcloud = WordCloud(width = 800, height = 800, 
-                background_color ='white', 
-                stopwords = stopwords, 
-                min_font_size = 10,
-                max_words=max_words).generate(formated_words)
+    if img_dir.endswith('.png'):
+        plt.savefig(img_dir)
+    else:
+        raise ValueError("Please save the path to end with '.png' such as 'word_bubble.png'")    
     
-  
-    # plot the WordCloud image                        
-    plt.figure(figsize = (8, 8), facecolor = None) 
-    plt.imshow(wordcloud) 
-    plt.axis("off") 
-    plt.tight_layout(pad = 0) 
-
-    plt.show()
