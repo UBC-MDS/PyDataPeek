@@ -102,4 +102,8 @@ def test_summary_string(make_files):
     test_result = results['summary'][5]
     assert df_result == test_result
 
-## test save csv
+def test_saved_file(make_files):
+   assert os.path.isfile(str(make_files) + 'results.csv')
+
+def test_saved_file_withdir(make_files):
+   assert os.path.isfile(str(make_files) + 'results.csv')
