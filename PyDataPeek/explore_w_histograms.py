@@ -26,36 +26,32 @@ def read_file(file, sheet_name=0):
             raise ValueError("Please use a valid csv or excel file.")
     return df
 
-def check_columns(df, columns_list):
+def is_numeric(df, column):
     """
-    Helper function used to take a dataframe, a list of numerical column names. 
-    Return none if all the columns are numerical, raise a print messages if 
-    one of the column is not numeric
+    Helper function used to take a dataframe, a column name
+    Returns True if the column is numerical, False otherwise
     
     Parameters
     --------
     file:
         a csv file
     coloumns: 
-        a list of numerical column names as strings
+        a column name as a string
     
     
     Returns
     -------
-    None or a print message
+    Bool
     """
-    for c in range(0, len(columns_list)):
-        
-        # check if the column is numerical
-        if str(df[columns_list[c]].dtypes) == 'int64' or str(df[columns_list[c]].dtypes) == 'float64':
-            return None
-        else:
-            print(df[columns_list[c]], 'is not a numerical column.'"Please use numerical column only.")
-          
+ 
+    if str(df[column].dtypes) == 'int64' or str(df[column].dtypes) == 'float64':
+        return True
+    else:
+        return False       
     
-def make_histograms(df, columns_list):
+def make_save_histogram(df, column):
     """
-    Helper function used to take a dataframe, a list of numerical column names 
+    Helper function used to take a dataframe, a numerical column name, 
     and returns a png file of histogram(s)
     
     Parameters
@@ -63,21 +59,21 @@ def make_histograms(df, columns_list):
     file:
         a csv file
     coloumns: 
-        a list of numerical column names as strings
+        a numerical column name as a string
     
     
     Returns
     -------
-    .png file(s) of histogram(s)
+    .png file of histogram
     """     
-    for c in range(0, len(columns_list)):
-        # plot and save the chart with different name
-        chart = alt.Chart(df).mark_bar().encode(
-                    alt.X(columns_list[c]+':Q', bin = True),
-                    alt.Y('count()')
-                )
 
-        chart.save(columns_list[c] + '_chart' + '.png')
+    # plot and save the chart with different name
+    chart = alt.Chart(df).mark_bar().encode(
+                alt.X(column+':Q', bin = True),
+                alt.Y('count()')
+            )
+
+    chart.save(column + '_chart' + '.png')
         
 def explore_w_histograms(file, columns_list, sheet_name =0):
     """
@@ -102,6 +98,10 @@ def explore_w_histograms(file, columns_list, sheet_name =0):
     >>> explore_w_histograms(['volumn', 'date'])
     """
     df = read_file(file, sheet_name = 0)
-    check_columns(df, columns_list)
-    make_histograms(df, columns_list)
+    for i in range(0, len(columns_list)):
+        if is_numeric(df, columns_list[i]) == True:
+            make_save_histogram(df, columns_list[i])
+        else:
+            print(str(df[columns_list[i]]), "is not a numerical column. Please use numerical column only.")
+
     
