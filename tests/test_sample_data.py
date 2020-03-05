@@ -43,4 +43,22 @@ def test_other_input(make_files):
     with pytest.raises(ValueError):
         sample.sample_data(str(make_files.join('df.pkl')))
 
-## test sample.summarize_data with sample dataframe
+def test_sample_record(make_files):
+    path_to_file = str(make_files.join('df.csv'))
+    df = pd.read_csv(path_to_file)
+    results = sample.summarize_data(df)
+    assert df.iloc[1].equals(results['sample_record'])
+
+def test_column_names(make_files):
+    path_to_file = str(make_files.join('df.csv'))
+    df = pd.read_csv(path_to_file)
+    results = sample.summarize_data(df)
+    assert df.columns.equals(results.index)
+
+def test_data_type(make_files):
+    path_to_file = str(make_files.join('df.csv'))
+    df = pd.read_csv(path_to_file)
+    results = sample.summarize_data(df)
+    assert df.dtypes.equals(results['data_type'])
+
+## test sample.summarize_data for summary column
