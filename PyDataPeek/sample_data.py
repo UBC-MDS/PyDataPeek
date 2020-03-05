@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+import os
 
 def read_file(file, sheet_name=0):
      """Helper function used to read the file and return a pandas dataframe.
@@ -43,8 +44,8 @@ def summarize_data(df):
      
     Returns
     -------
-    .csv file
-        data table showing data summary, as a .csv file
+    pandas.Dataframe
+        data frame showing data summary
         data summary includes column names in rows, an example record, column data types and
         summary statistics for integer, string and float data
 
@@ -62,23 +63,21 @@ def summarize_data(df):
     ## add summary statistics based on data type
     summary = []
     for index, row in results.iterrows():
-        if row['data_type'] == 'int64':
+        if row['data_type'] == 'int64' or row['data_type'] == 'int32':
             summary.append("unique values: " + str(df[index].unique().size))
         elif row['data_type'] == 'object':
             summary.append("average length of string: " + str(round(np.mean([len(str(i)) for i in df[index]]), 1)))
-        elif row['data_type'] == 'float64':
+        elif row['data_type'] == 'float64' or row['data_type'] == 'float32':
             summary.append("median value: " + str(np.median(df[index])))
         else:
             summary.append("No summary available")      
     results['summary'] = summary
 
-
-    # save and return csv
-    csv = results.to_csv()
-    return csv
+    # return results
+    return results
 
 
-def sample_data(file, sheet_name=0)::
+def sample_data(file, sheet_name=0, dir=''):
     """Returns  data table showing column names in rows, an example record, column data types
     and summary statistics for numerical, text data from Excel or csv data
     
@@ -88,6 +87,8 @@ def sample_data(file, sheet_name=0)::
          the name of the file, including the filetype extension
      sheet_name : int, optional
          if passing an excel file, the name of the sheet to analyze, by default 0
+     dir : str, optional
+        the directory where the file should be saved, by default ''
      
     Returns
     -------
@@ -103,5 +104,6 @@ def sample_data(file, sheet_name=0)::
     """
 
     df = read_file(file, sheet_name)
-    csv = summarize_data(df)
-    return csv
+    results = summarize_data(df)
+    results.to_csv(os.path.join(dir, 'results.csv'))
+    return
