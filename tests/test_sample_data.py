@@ -24,7 +24,7 @@ def make_files(tmpdir_factory):
     df.to_excel(str(fn.join('df.xls')), sheet_name='abc')
     df.to_excel(str(fn.join('df.xlsx')), sheet_name='abc')
 
-    # Create and save image 
+    # Create and save csv 
     sample.sample_data(str(fn.join('df.csv')))
     sample.sample_data(str(fn.join('df.csv')), sheet_name='abc')
     return fn
@@ -61,4 +61,45 @@ def test_data_type(make_files):
     results = sample.summarize_data(df)
     assert df.dtypes.equals(results['data_type'])
 
-## test sample.summarize_data for summary column
+def test_summary_float64(make_files):
+    path_to_file = str(make_files.join('df.csv'))
+    df = pd.read_csv(path_to_file)
+    results = sample.summarize_data(df)
+    df_result = 'median value: ' + str(np.median(df['A']))
+    test_result = results['summary'][0]
+    assert df_result == test_result
+
+def test_summary_other(make_files):
+    path_to_file = str(make_files.join('df.csv'))
+    df = pd.read_csv(path_to_file)
+    results = sample.summarize_data(df)
+    test_result_datetime = results['summary'][1]
+    test_result_category = results['summary'][4]
+    assert test_result_datetime == 'No summary available'
+    assert test_result_category == 'No summary available'
+
+def test_summary_float32(make_files):
+    path_to_file = str(make_files.join('df.csv'))
+    df = pd.read_csv(path_to_file)
+    results = sample.summarize_data(df)
+    df_result = 'median value: ' + str(np.median(df['C']))
+    test_result = results['summary'][2]
+    assert df_result == test_result
+
+def test_summary_int32(make_files):
+    path_to_file = str(make_files.join('df.csv'))
+    df = pd.read_csv(path_to_file)
+    results = sample.summarize_data(df)
+    df_result = 'unique values: ' + str(df['D'].unique().size)    
+    test_result = results['summary'][3]
+    assert df_result == test_result
+
+def test_summary_string(make_files):
+    path_to_file = str(make_files.join('df.csv'))
+    df = pd.read_csv(path_to_file)
+    results = sample.summarize_data(df)
+    df_result = "average length of string: " + str(round(np.mean([len(str(i)) for i in df['F']]), 1))
+    test_result = results['summary'][5]
+    assert df_result == test_result
+
+## test save csv
