@@ -58,7 +58,7 @@ def make_save_histogram(df, column):
     --------
     file:
         a csv file
-    coloumns: 
+    columns: 
         a numerical column name as a string
     
     
