@@ -35,7 +35,7 @@ def is_numeric(df, column):
     --------
     file:
         a csv file
-    coloumns: 
+    column: 
         a column name as a string
     
     
@@ -58,7 +58,7 @@ def make_save_histogram(df, column):
     --------
     file:
         a csv file
-    columns: 
+    column: 
         a numerical column name as a string
     
     
@@ -85,7 +85,7 @@ def explore_w_histograms(file, columns_list, sheet_name =0):
     --------
     file:
         a csv file
-    coloumns: 
+    columns_list: 
         a list of numerical column names as strings
     
     
