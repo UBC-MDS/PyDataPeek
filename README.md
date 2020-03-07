@@ -13,9 +13,9 @@ This package is also useful for business users who have to interact with data an
 
 ### Functions in this package
 All functions take in csv or Excel files as inputs to generate user-friendly summaries of the ingested dataset.
-1. **missing_data_overview**: Returns a visualization of the data where missing values are highlighted and the number of rows and columns are visually displayed.
+1. **missing_data_overview**: Returns a visualization of the data where missing values are highlighted and the number of rows and columns are visually displayed. A heatmap will be used here to highlight the missing values so it's easy for users to have an overview of which part is missing in the data.
 2. **sample_data**: Returns a dataframe that displays the column names as rows, an example of one row, the data type of each column and summary statistics for each column depending on the data type. Quantitative measures will be summarized with a range, categorical values (i.e., less than 20 unique values) will be summarized by displaying the unique values, long form text data will be summarized with the average length of the response. 
-3. **explore_with_histograms**: Returns histograms that shows the distribution of responses for given column(s). 
+3. **explore_with_histograms**: Returns saved png files of histograms that shows the distribution of responses for given columns. The given list of numerical columns can be chosen by user.
 4. **explore_with_word_bubble**: Returns a word bubble visualization for text data given column name.
 
 ### How this fits in the Python ecosystem
