@@ -31,26 +31,32 @@ def make_files(tmpdir_factory):
     return fn
 
 def test_csv_input(make_files):
+    # tests the read_file() for .csv input
     path_to_file = str(make_files.join('df.csv'))
     pd.testing.assert_frame_equal(missing.read_file(path_to_file), pd.read_csv(path_to_file))
 
 def test_excel_input(make_files):
+    # tests the read_file() for .xls and .xlsx input
     path_to_file = str(make_files.join('df.xls'))
     pd.testing.assert_frame_equal(missing.read_file(path_to_file), pd.read_excel(path_to_file))
     # test another excel file format '.xlsx'
     pd.testing.assert_frame_equal(missing.read_file(path_to_file + 'x'), pd.read_excel(path_to_file + 'x'))
 
 def test_other_input(make_files):
+    # tests for error if file is not a csv or excel
     with pytest.raises(ValueError):
         missing.missing_data_overview(str(make_files.join('df.pkl')))
 
 def test_plot(make_files):
+    # tests that plot is created
     path_to_file = str(make_files.join('df.csv'))
     df = pd.read_csv(path_to_file)
     assert isinstance(missing.make_plot(df), matplotlib.figure.Figure)
 
 def test_saved_file(make_files):
+    # tests that plot file is saved
    assert os.path.isfile(str(make_files) + '0_heatmap.png')
 
 def test_saved_file_withdir(make_files):
+   # tests that plot file is saved if dir is passed
    assert os.path.isfile(str(make_files) + 'abc_heatmap.png')
