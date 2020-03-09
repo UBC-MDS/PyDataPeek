@@ -95,9 +95,16 @@ def explore_w_histograms(file, columns_list, sheet_name =0):
     
     Example
     -------
-    >>> explore_w_histograms(['volumn', 'date'])
+    >>> explore_w_histograms(df, ['volumn', 'date'])
     """
     df = read_file(file, sheet_name = 0)
+    
+    try:
+        df = df[columns_list[0]]
+    except:
+        raise ValueError("Make sure column name is in your data!") 
+        
+    
     for i in range(0, len(columns_list)):
         if is_numeric(df, columns_list[i]) == True:
             make_save_histogram(df, columns_list[i])
