@@ -101,10 +101,6 @@ def make_cloud(formated_words, stopwords, max_words, width, height):
 
     return fig
 
-from wordcloud import WordCloud, STOPWORDS 
-import matplotlib.pyplot as plt 
-import pandas as pd
-
 
 def word_bubble(file, sheet_name=0, img_dir='', column='', max_words=50, height=800, width=800):
     """Return an image of a word bubble of qualitative responses (text) from a column(s) from a spreadsheet.
