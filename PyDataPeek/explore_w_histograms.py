@@ -2,10 +2,12 @@ import pandas as pd
 import altair as alt
 from xlrd import XLRDError
 
+
 def read_file(file, sheet_name=0):
     """
     Helper function used to read the file and return a pandas dataframe.
-    Checks if file type is a .csv or excel. If not, returns a ValueError.
+    Checks if file type is a .csv or excel. If not,
+    returns a ValueError.
     Parameters
     ----------
     file : str
@@ -23,7 +25,7 @@ def read_file(file, sheet_name=0):
     else:
         try:
             df = pd.read_excel(file, sheet_name=sheet_name)
-        except XLRDError: 
+        except XLRDError:
             raise ValueError("Please use a valid csv or excel file.")
     return df
 
@@ -47,7 +49,7 @@ def is_numeric(df, column):
     """
 
     if str(df[column].dtypes) == 'int64' or \
-        str(df[column].dtypes) == 'float64':
+       str(df[column].dtypes) == 'float64':
         return True
     else:
         return False
