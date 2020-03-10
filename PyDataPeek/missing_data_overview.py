@@ -1,6 +1,7 @@
-import pandas as pd
 import matplotlib.pyplot as plt
+import pandas as pd
 import seaborn as sns
+from xlrd import XLRDError
 
 
 def read_file(file, sheet_name=0):
@@ -13,7 +14,8 @@ def read_file(file, sheet_name=0):
     file : str
         the name of the file, including the filetype extension
     sheet_name : int, optional
-        if passing an excel file, the name of the sheet to analyze, by default 0
+        if passing an excel file, the name of the sheet to analyze,
+        by default 0
 
     Returns
     -------
@@ -25,13 +27,14 @@ def read_file(file, sheet_name=0):
     else:
         try:
             df = pd.read_excel(file, sheet_name=sheet_name)
-        except:
+        except XLRDError:
             raise ValueError("Please use a valid csv or excel file.")
     return df
 
 
 def make_plot(df):
-    """Helper function used to create heatmap showing missing values in a dataframe.
+    """Helper function used to create heatmap showing missing values in
+    a dataframe.
 
     Parameters
     ----------
@@ -59,7 +62,8 @@ def missing_data_overview(file, sheet_name=0, dir=''):
     file : str
         the name of the file, including the filetype extension
     sheet_name : int, optional
-        if passing an excel file, the name of the sheet to analyze, by default 0
+        if passing an excel file, the name of the sheet to analyze,
+        by default 0
     dir : str, optional
         the directory where the file should be saved, by default ''
 
@@ -70,10 +74,11 @@ def missing_data_overview(file, sheet_name=0, dir=''):
 
     Example
     -------
-    >>> missing_data_overview("customers.xlsx", sheet_name='2019', dir='report')
+    >>> missing_data_overview("customers.xlsx", sheet_name='2019',
+        dir='report')
     """
     df = read_file(file, sheet_name=sheet_name)
     fig = make_plot(df)
-    p = fig.savefig(f"{dir}{sheet_name}_heatmap.png", orientation='landscape',
-                    optimize=True, pad_inches=2, bbox_inches='tight')
+    fig.savefig(f"{dir}{sheet_name}_heatmap.png", orientation='landscape',
+                optimize=True, pad_inches=2, bbox_inches='tight')
     return
