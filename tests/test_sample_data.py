@@ -4,6 +4,7 @@ import pytest
 import pandas as pd
 import numpy as np
 import os
+from xlrd import XLRDError
 
 # create dummy dataframe for use in following tests
 
@@ -63,7 +64,7 @@ def test_excel_input(make_files):
 
 
 def test_other_input(make_files):
-    with pytest.raises(ValueError):
+    with pytest.raises(XLRDError):
         sample.sample_data(str(make_files.join('df.pkl')))
 
 # check that sample record is correctly obtained from data
