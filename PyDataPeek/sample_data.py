@@ -30,7 +30,7 @@ def read_file(file, sheet_name=0):
     else:
         try:
             df = pd.read_excel(file, sheet_name=sheet_name)
-        except XLRDError():
+        except XLRDError:
             raise XLRDError("Please use a valid csv or excel file.")
     return df
 
