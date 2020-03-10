@@ -108,7 +108,7 @@ def explore_w_histograms(file, columns_list=[], sheet_name=0):
 
     try:
         columns_list[0]
-    except:
+    except IndexError:
         raise ValueError("Make sure column name is in your data!")
 
     for i in range(0, len(columns_list)):
