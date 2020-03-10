@@ -57,6 +57,7 @@ def test_saved_plot(make_files):
     path_to_file = str(make_files.join('df.csv'))
     df = pd.read_csv(path_to_file)
     assert os.path.isfile('C_chart.png')
+    os.remove('C_chart.png')
 
 # tests is_numeric() to see if it identifies numerical columns correctly
 def test_non_numeric_column(make_files):

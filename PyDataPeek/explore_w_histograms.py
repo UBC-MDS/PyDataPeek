@@ -72,7 +72,7 @@ def make_save_histogram(df, column):
 
     # plot and save the chart with different name
     chart = alt.Chart(df).mark_bar().encode(
-        alt.X(column + ':Q', bin = True),
+        alt.X(column + ':Q', bin=True),
         alt.Y('count()')
     )
 
