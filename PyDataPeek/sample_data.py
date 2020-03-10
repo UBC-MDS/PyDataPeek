@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 import os
+from xlrd import XLRDError
 
 
 def read_file(file, sheet_name=0):
@@ -29,8 +30,8 @@ def read_file(file, sheet_name=0):
     else:
         try:
             df = pd.read_excel(file, sheet_name=sheet_name)
-        except ValueError:
-            raise ValueError("Please use a valid csv or excel file.")
+        except XLRDError():
+            raise XLRDError("Please use a valid csv or excel file.")
     return df
 
 
