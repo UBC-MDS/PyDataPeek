@@ -116,3 +116,4 @@ def test_summary_string():
 # test that csv output file is saved properly
 def test_saved_file(make_files):
     assert os.path.isfile('results.csv')
+    os.remove('results.csv')
