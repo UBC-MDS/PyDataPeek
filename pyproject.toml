@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "pydatapeek"
-version = "0.1.2"
+version = "0.1.3"
 description = ""
 authors = ["Miro (Shangjing) HU <mirohu@outlook.com>"]
 license = "MIT"
