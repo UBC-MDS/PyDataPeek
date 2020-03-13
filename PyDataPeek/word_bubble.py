@@ -66,8 +66,7 @@ def _make_formated_words(df):
     return formated_words, stopwords
 
 
-def _make_cloud(formated_words,
-               stopwords, max_words, width, height):
+def _make_cloud(formated_words, stopwords, max_words, width, height):
     """Return an plt of a word bubble of qualitative responses
     (text) from a column(s) from a spreadsheet.
 

@@ -28,8 +28,8 @@ def missing_data_overview(file, sheet_name=0, dir=''):
     >>> missing_data_overview("customers.xlsx", sheet_name='2019',
         dir='report')
     """
-    df = missing.read_file(file, sheet_name=sheet_name)
-    fig = missing.make_plot(df)
+    df = missing._read_file(file, sheet_name=sheet_name)
+    fig = missing._make_plot(df)
     fig.savefig(f"{dir}{sheet_name}_heatmap.png", orientation='landscape',
                 optimize=True, pad_inches=2, bbox_inches='tight')
     return
@@ -62,8 +62,8 @@ def sample_data(file, sheet_name=0, dir=''):
     >>> sample_datacustomers.xlsx, sheet_name='2019')
     """
 
-    df = sample.read_file(file, sheet_name)
-    results = sample.summarize_data(df)
+    df = sample._read_file(file, sheet_name)
+    results = sample._summarize_data(df)
     results.to_csv(os.path.join(dir, 'results.csv'))
     return
 
@@ -91,7 +91,7 @@ def explore_w_histograms(file, columns_list=[], sheet_name=0):
     >>> explore_w_histograms('data/toy_dataset.csv', ['volumn', 'date'])
     """
 
-    df = histo.read_file(file, sheet_name=0)
+    df = histo._read_file(file, sheet_name=0)
 
     try:
         columns_list[0]
@@ -99,8 +99,8 @@ def explore_w_histograms(file, columns_list=[], sheet_name=0):
         raise ValueError("Make sure column name is in your data!")
 
     for i in range(0, len(columns_list)):
-        if histo.is_numeric(df, columns_list[i]) is True:
-            histo.make_save_histogram(df, columns_list[i])
+        if histo._is_numeric(df, columns_list[i]) is True:
+            histo._make_save_histogram(df, columns_list[i])
         else:
             print(str(df[columns_list[i]]),
                   "is not a numerical column.",
@@ -142,16 +142,16 @@ def word_bubble(file, sheet_name=0, img_dir='', column='',
      word_bubble(file='imdb_sample', sheet_name=0, img_dir='word_bubble.png',
      column='review', max_words=50, height=800, width=800)
      """
-    df = word.read_file(file=file, sheet_name=sheet_name)
+    df = word._read_file(file=file, sheet_name=sheet_name)
 
     try:
         df = df[column]
     except ValueError:
         raise ValueError("Make sure column name is in your data!")
 
-    formated_words, stopwords = word.make_formated_words(df)
+    formated_words, stopwords = word._make_formated_words(df)
 
-    plt = word.make_cloud(formated_words, stopwords, max_words, width, height)
+    plt = word._make_cloud(formated_words, stopwords, max_words, width, height)
     p = plt.savefig(f"{img_dir}{sheet_name}_wordcloud.png",
                     orientation='landscape', optimize=True, pad_inches=2,
                     bbox_inches='tight')
