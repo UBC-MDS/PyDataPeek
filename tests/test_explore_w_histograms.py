@@ -28,8 +28,8 @@ def make_files(tmpdir_factory):
     df.to_excel(str(fn.join('df.xlsx')), sheet_name='abc')
 
     # Create and save image
-    pdp.explore_w_histograms(str(fn.join('df.csv')), columns_list=['C'])
-    pdp.explore_w_histograms(str(fn.join('df.csv')), columns_list=['E'])
+    pdp.histogram(str(fn.join('df.csv')), columns_list=['C'])
+    pdp.histogram(str(fn.join('df.csv')), columns_list=['E'])
     return fn
 
 # tests the read_file() for .csv input
@@ -57,7 +57,7 @@ def test_excel_input(make_files):
 
 def test_other_input(make_files):
     with pytest.raises(ValueError):
-        pdp.explore_w_histograms(str(make_files.join('df.pkl')), ['C'])
+        pdp.histogramstr(make_files.join('df.pkl')), ['C'])
 
 # test to see if the plots are saved
 

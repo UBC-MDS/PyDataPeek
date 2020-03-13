@@ -29,8 +29,8 @@ def make_files(tmpdir_factory):
     df.to_excel(str(fn.join('df.xlsx')), sheet_name='abc')
 
     # Create and save image
-    pdp.missing_data_overview(str(fn.join('df.csv')), dir=str(fn))
-    pdp.missing_data_overview(
+    pdp.missing_data(str(fn.join('df.csv')), dir=str(fn))
+    pdp.missing_data(
         str(fn.join('df.csv')), dir=str(fn), sheet_name='abc')
     return fn
 
@@ -55,7 +55,7 @@ def test_excel_input(make_files):
 def test_other_input(make_files):
     # tests for error if file is not a csv or excel
     with pytest.raises(ValueError):
-        pdp.missing_data_overview(str(make_files.join('df.pkl')))
+        pdp.missing_data(str(make_files.join('df.pkl')))
 
 
 def test_plot(make_files):

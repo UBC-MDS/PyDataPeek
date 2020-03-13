@@ -5,7 +5,7 @@ from PyDataPeek import word_bubble as word
 import os
 
 
-def missing_data_overview(file, sheet_name=0, dir=''):
+def missing_data(file, sheet_name=0, dir=''):
     """Return a heatmap showing the missing values in the file.
 
     Parameters
@@ -35,7 +35,7 @@ def missing_data_overview(file, sheet_name=0, dir=''):
     return
 
 
-def sample_data(file, sheet_name=0, dir=''):
+def peek_data(file, sheet_name=0, dir=''):
     """Returns  data table showing column names in rows, an example record,
     column data types and summary statistics for numerical, text data from
     Excel or csv data
@@ -68,7 +68,7 @@ def sample_data(file, sheet_name=0, dir=''):
     return
 
 
-def explore_w_histograms(file, columns_list=[], sheet_name=0):
+def histogram(file, columns_list=[], sheet_name=0):
     """
     take a csv file, a sheet name (default 0),
     a list of numerical column names
@@ -107,7 +107,7 @@ def explore_w_histograms(file, columns_list=[], sheet_name=0):
                   "Please use numerical column only.")
 
 
-def word_bubble(file, sheet_name=0, img_dir='', column='',
+def word_cloud(file, sheet_name=0, img_dir='', column='',
                 max_words=50, height=800, width=800):
     """Return an image of a word bubble of qualitative responses (text)
     from a column(s) from a spreadsheet.

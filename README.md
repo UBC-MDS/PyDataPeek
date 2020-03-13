@@ -13,10 +13,10 @@ This package is also useful for business users who have to interact with data an
 
 ### Functions in this package
 All functions take in csv or Excel files as inputs to generate user-friendly summaries of the ingested dataset.
-1. **missing_data_overview**: Returns a visualization of the data where missing values are highlighted and the number of rows and columns are visually displayed. A heatmap will be used here to highlight the missing values so it's easy for users to have an overview of which part is missing in the data.
-2. **sample_data**: Returns a dataframe that displays the column names as rows, an example of one row, the data type of each column and summary statistics for each column depending on the data type. Integer data is summarized with number of unique values, text data is summarized with average length of string and float data is summarized with the median of the values.
-3. **explore_with_histograms**: Returns saved png files of histograms that shows the distribution of responses for given columns. The given list of numerical columns can be chosen by user.
-4. **explore_with_word_bubble**: Returns a saved word bubble visualization for text data given column name. This would allow users to know what are the most frequently used words for each column in a short time.
+1. **missing_data**: Returns a visualization of the data where missing values are highlighted and the number of rows and columns are visually displayed. A heatmap will be used here to highlight the missing values so it's easy for users to have an overview of which part is missing in the data.
+2. **peek_data**: Returns a dataframe that displays the column names as rows, an example of one row, the data type of each column and summary statistics for each column depending on the data type. Integer data is summarized with number of unique values, text data is summarized with average length of string and float data is summarized with the median of the values.
+3. **histogram**: Returns saved png files of histograms that shows the distribution of responses for given columns. The given list of numerical columns can be chosen by user.
+4. **word_cloud**: Returns a saved word bubble visualization for text data given column name. This would allow users to know what are the most frequently used words for each column in a short time.
 
 ### How this fits in the Python ecosystem
 Several Python packages are available that support exploratory data analysis but none are specific to the targeted use cases here - a simple and technologically friendly way of summarizing data. 
@@ -32,7 +32,7 @@ pip install -i https://test.pypi.org/simple/ pydatapeek
 ```
 
 ### Usage:
-We detail an example usage of our function below. The sample data file that we have used below can be found [here](add link when its on main branch). The following example assumes that the file has been downloaded as `sample.csv`. 
+We detail an example usage of our function below. The sample data file that we have used below can be found [here](add link when its on main branch). The following example assumes that the file has been downloaded as `example.csv`. 
 
 #### Setup
 ```
@@ -42,7 +42,7 @@ import PyDataPeek as pdp
 #### Check for missing data
 **Input**
 ```
-pdp.missing_data_overview('example.csv')
+pdp.missing_data('example.csv')
 ```
 **Output**
 A `.png` file in your working directory named `0_heatmap.png`:
@@ -52,7 +52,7 @@ A `.png` file in your working directory named `0_heatmap.png`:
 #### View summary statistics of data
 **Input**
 ```
-pdp.sample_data('example.csv`)
+pdp.peek_data('example.csv`)
 ```
 **Output**
 |            | sample_record                                              | data_type | summary                          | 
@@ -71,7 +71,7 @@ pdp.sample_data('example.csv`)
 #### View histogram of a numerical column of the data
 **Input**
 ```
-pdp.explore_w_histograms('example.csv', columns_list=['C'])
+pdp.histogram('example.csv', columns_list=['C'])
 ```
 **Output**
 A `.png` file in your working directory named `C_chart.png`:
@@ -81,7 +81,7 @@ A `.png` file in your working directory named `C_chart.png`:
 #### View wordcloud of a text column of the data
 **Input**
 ```
-pdp.word_bubble('example.csv', column="movies")
+pdp.word_cloud('example.csv', column="movies")
 ```
 **Output**
 A `.png` file in your working directory named `C_wordcloud.png`:

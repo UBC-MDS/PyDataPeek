@@ -38,8 +38,8 @@ def make_files(tmpdir_factory):
     df.to_excel(str(fn.join('df.xlsx')), sheet_name='abc')
 
     # Create and save csv
-    pdp.sample_data(str(fn.join('df.csv')))
-    pdp.sample_data(str(fn.join('df.csv')), sheet_name='abc')
+    pdp.peek_data(str(fn.join('df.csv')))
+    pdp.peek_data(str(fn.join('df.csv')), sheet_name='abc')
     return fn
 
 # test that function reads csv
@@ -66,7 +66,7 @@ def test_excel_input(make_files):
 
 def test_other_input(make_files):
     with pytest.raises(XLRDError):
-        pdp.sample_data(str(make_files.join('df.pkl')))
+        pdp.peek_data(str(make_files.join('df.pkl')))
 
 # check that sample record is correctly obtained from data
 
