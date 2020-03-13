@@ -7,6 +7,10 @@ license = "MIT"
 packages = [
     { include = "PackageName"},
 ]
+readme = "README.md"
+homepage = "https://github.com/UBC-MDS/PyDataPeek"
+repository = "https://github.com/UBC-MDS/PyDataPeek"
+documentation = 'https://PyDataPeek.readthedocs.io'
 
 
 [tool.poetry.dependencies]
@@ -38,7 +42,7 @@ requires = ["poetry>=0.12"]
 build-backend = "poetry.masonry.api"
 
 [tool.semantic_release]
-version_variable = "<PyDataPeek>/__init__.py:__version__"
+version_variable = "PyDataPeek/__init__.py:__version__"
 version_source = "commit"
 upload_to_pypi = "false"
 patch_without_tag = "true"
