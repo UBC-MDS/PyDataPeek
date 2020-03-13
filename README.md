@@ -32,11 +32,11 @@ pip install -i https://test.pypi.org/simple/ pydatapeek
 ```
 
 ### Usage:
-We detail an example usage of our function below. The sample data file that we have used below can be found [here](add link when its on main branch). The following example assumes that the file has been downloaded as `sample.csv`. 
+We detail an example usage of our function below. The sample data file that we have used below can be found [here](https://github.com/UBC-MDS/PyDataPeek/blob/master/usage/example.csv). The following example assumes that the file has been downloaded as `example.csv`. 
 
 #### Setup
 ```
-import PyDataPeek as pdp
+from PyDataPeek import PyDataPeek as pdp
 ```
 
 #### Check for missing data
