@@ -4,7 +4,7 @@ import pandas as pd
 from xlrd import XLRDError
 
 
-def read_file(file, sheet_name=0):
+def _read_file(file, sheet_name=0):
     """Helper function used to read the file and return a pandas dataframe.
     Checks if file type is a .csv or excel. If not, returns a ValueError.
     Parameters
@@ -29,7 +29,7 @@ def read_file(file, sheet_name=0):
     return df
 
 
-def make_formated_words(df):
+def _make_formated_words(df):
     """Helper function used to make the column into a vector that can be
     read into the cloudword function object.
 
@@ -66,8 +66,7 @@ def make_formated_words(df):
     return formated_words, stopwords
 
 
-def make_cloud(formated_words,
-               stopwords, max_words, width, height):
+def _make_cloud(formated_words, stopwords, max_words, width, height):
     """Return an plt of a word bubble of qualitative responses
     (text) from a column(s) from a spreadsheet.
 
@@ -106,54 +105,3 @@ def make_cloud(formated_words,
     plt.tight_layout(pad=0)
 
     return fig
-
-
-def word_bubble(file, sheet_name=0, img_dir='', column='',
-                max_words=50, height=800, width=800):
-    """Return an image of a word bubble of qualitative responses (text)
-    from a column(s) from a spreadsheet.
-
-     Parameters
-     ----------
-     file : str
-         the name of the file, including the filetype extension
-     sheet_name : int, optional
-         if passing an excel file, the name of the sheet to analyze,
-          default = 0
-     img_dir : str, optional
-         the directory where the file should be saved, by default ''
-     column : string or vector
-        the columns header that are to be included in the word bubble
-     max_words : int
-         max number of words in the word bubble, default = 50 words
-     height : int
-        the height of the outputted image, default = 800 pixels
-     width : int
-        the width of the outputted image, default = 800 pixels
-
-
-     Returns
-     -------
-     .png file
-        returns an image of a word bubble by specified width and height
-        and includes max number of words.
-
-     Example
-     -------
-     word_bubble(file='imdb_sample', sheet_name=0, img_dir='word_bubble.png',
-     column='review', max_words=50, height=800, width=800)
-     """
-    df = read_file(file=file, sheet_name=sheet_name)
-
-    try:
-        df = df[column]
-    except ValueError:
-        raise ValueError("Make sure column name is in your data!")
-
-    formated_words, stopwords = make_formated_words(df)
-
-    plt = make_cloud(formated_words, stopwords, max_words, width, height)
-    p = plt.savefig(f"{img_dir}{sheet_name}_wordcloud.png",
-                    orientation='landscape', optimize=True, pad_inches=2,
-                    bbox_inches='tight')
-    return p

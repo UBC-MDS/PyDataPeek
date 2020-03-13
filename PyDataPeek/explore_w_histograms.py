@@ -3,7 +3,7 @@ import altair as alt
 from xlrd import XLRDError
 
 
-def read_file(file, sheet_name=0):
+def _read_file(file, sheet_name=0):
     """
     Helper function used to read the file and return a pandas dataframe.
     Checks if file type is a .csv or excel. If not,
@@ -30,7 +30,7 @@ def read_file(file, sheet_name=0):
     return df
 
 
-def is_numeric(df, column):
+def _is_numeric(df, column):
     """
     Helper function used to take a dataframe, a column name
     Returns True if the column is numerical, False otherwise
@@ -55,7 +55,7 @@ def is_numeric(df, column):
         return False
 
 
-def make_save_histogram(df, column):
+def _make_save_histogram(df, column):
     """
     Helper function used to take a dataframe, a numerical column name,
     and returns a png file of histogram(s)
@@ -80,41 +80,3 @@ def make_save_histogram(df, column):
     )
 
     chart.save(column + '_chart' + '.png')
-
-
-def explore_w_histograms(file, columns_list=[], sheet_name=0):
-    """
-    take a csv file, a sheet name (default 0),
-    a list of numerical column names
-    and returns a png file of histogram(s)
-
-    Parameters
-    --------
-    file:
-        a csv file
-    columns_list:
-        a list of numerical column names as strings, default = []
-
-
-    Returns
-    -------
-    .png file(s) of histogram(s)
-
-    Example
-    -------
-    >>> explore_w_histograms('data/toy_dataset.csv', ['volumn', 'date'])
-    """
-    df = read_file(file, sheet_name=0)
-
-    try:
-        columns_list[0]
-    except IndexError:
-        raise ValueError("Make sure column name is in your data!")
-
-    for i in range(0, len(columns_list)):
-        if is_numeric(df, columns_list[i]) is True:
-            make_save_histogram(df, columns_list[i])
-        else:
-            print(str(df[columns_list[i]]),
-                  "is not a numerical column.",
-                  "Please use numerical column only.")

@@ -1,3 +1,4 @@
+from PyDataPeek import PyDataPeek as pdp
 from PyDataPeek import missing_data_overview as missing
 
 import pytest
@@ -28,8 +29,8 @@ def make_files(tmpdir_factory):
     df.to_excel(str(fn.join('df.xlsx')), sheet_name='abc')
 
     # Create and save image
-    missing.missing_data_overview(str(fn.join('df.csv')), dir=str(fn))
-    missing.missing_data_overview(
+    pdp.missing_data_overview(str(fn.join('df.csv')), dir=str(fn))
+    pdp.missing_data_overview(
         str(fn.join('df.csv')), dir=str(fn), sheet_name='abc')
     return fn
 
@@ -37,31 +38,31 @@ def make_files(tmpdir_factory):
 def test_csv_input(make_files):
     # tests the read_file() for .csv input
     path_to_file = str(make_files.join('df.csv'))
-    pd.testing.assert_frame_equal(missing.read_file(
+    pd.testing.assert_frame_equal(missing._read_file(
         path_to_file), pd.read_csv(path_to_file))
 
 
 def test_excel_input(make_files):
     # tests the read_file() for .xls and .xlsx input
     path_to_file = str(make_files.join('df.xls'))
-    pd.testing.assert_frame_equal(missing.read_file(
+    pd.testing.assert_frame_equal(missing._read_file(
         path_to_file), pd.read_excel(path_to_file))
     # test another excel file format '.xlsx'
-    pd.testing.assert_frame_equal(missing.read_file(
+    pd.testing.assert_frame_equal(missing._read_file(
         path_to_file + 'x'), pd.read_excel(path_to_file + 'x'))
 
 
 def test_other_input(make_files):
     # tests for error if file is not a csv or excel
     with pytest.raises(ValueError):
-        missing.missing_data_overview(str(make_files.join('df.pkl')))
+        pdp.missing_data_overview(str(make_files.join('df.pkl')))
 
 
 def test_plot(make_files):
     # tests that plot is created
     path_to_file = str(make_files.join('df.csv'))
     df = pd.read_csv(path_to_file)
-    assert isinstance(missing.make_plot(df), matplotlib.figure.Figure)
+    assert isinstance(missing._make_plot(df), matplotlib.figure.Figure)
 
 
 def test_saved_file(make_files):

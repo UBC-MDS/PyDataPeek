@@ -28,8 +28,67 @@ Several Python packages are available that support exploratory data analysis but
 This project is under development! Upon it's first release, it can be installed with the following instructions.
 
 ```
-pip install -i https://test.pypi.org/simple/ PyDataPeek
+pip install -i https://test.pypi.org/simple/ pydatapeek
 ```
+
+### Usage:
+We detail an example usage of our function below. The sample data file that we have used below can be found [here](add link when its on main branch). The following example assumes that the file has been downloaded as `sample.csv`. 
+
+#### Setup
+```
+import PyDataPeek as pdp
+```
+
+#### Check for missing data
+**Input**
+```
+pdp.missing_data_overview('example.csv')
+```
+**Output**
+A `.png` file in your working directory named `0_heatmap.png`:
+
+![](usage/0_heatmap.png)
+
+#### View summary statistics of data
+**Input**
+```
+pdp.sample_data('example.csv`)
+```
+**Output**
+|            | sample_record                                              | data_type | summary                          | 
+|------------|------------------------------------------------------------|-----------|----------------------------------| 
+| Unnamed: 0 | 1                                                          | int64     | unique values: 4                 | 
+| A          | 1.0                                                        | float64   | median value: 1.0                | 
+| B          | 2013-01-02                                                 | object    | average length of string: 10.0   | 
+| C          | 0.5049417                                                  | float64   | median value: 0.34510475         | 
+| D          | 3                                                          | int64     | unique values: 1                 | 
+| E          | train                                                      | object    | average length of string: 4.2    | 
+| F          | foo                                                        | object    | average length of string: 3.0    | 
+| movies     | "Young couple on the road, minding their own business ..." | object    | average length of string: 1336.2 | 
+
+...
+
+#### View histogram of a numerical column of the data
+**Input**
+```
+pdp.explore_w_histograms('example.csv', columns_list=['C'])
+```
+**Output**
+A `.png` file in your working directory named `C_chart.png`:
+
+![](usage/C_chart.png)
+
+#### View wordcloud of a text column of the data
+**Input**
+```
+pdp.word_bubble('example.csv', column="movies")
+```
+**Output**
+A `.png` file in your working directory named `C_wordcloud.png`:
+
+![](usage/wordcloud.png)
+
+
 
 ### Documentation
 The official documentation is hosted on Read the Docs: <https://PyDataPeek.readthedocs.io/en/latest/>

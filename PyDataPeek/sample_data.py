@@ -1,10 +1,9 @@
 import pandas as pd
 import numpy as np
-import os
 from xlrd import XLRDError
 
 
-def read_file(file, sheet_name=0):
+def _read_file(file, sheet_name=0):
     """Helper function used to read the file and return a pandas dataframe.
 
     Checks if file type is a .csv or excel. If not, returns a ValueError.
@@ -35,7 +34,7 @@ def read_file(file, sheet_name=0):
     return df
 
 
-def summarize_data(df):
+def _summarize_data(df):
     """Helper function that returns  data table showing column names in rows,
     an example record, column data types and summary statistics for numerical
     and text data
@@ -80,36 +79,3 @@ def summarize_data(df):
 
     # return results
     return results
-
-
-def sample_data(file, sheet_name=0, dir=''):
-    """Returns  data table showing column names in rows, an example record,
-    column data types and summary statistics for numerical, text data from
-    Excel or csv data
-
-     Parameters
-     ----------
-     file : str
-         the name of the file, including the filetype extension
-     sheet_name : int, optional
-         if passing an excel file, the name of the sheet to analyze, default 0
-     dir : str, optional
-        the directory where the file should be saved, by default ''
-
-    Returns
-    -------
-    .csv file
-        data table showing data summary, as a .csv file
-        data summary includes column names in rows, an example record, column
-        data types and summary statistics for integer, string and float data
-
-
-    Example
-    -------
-    >>> sample_datacustomers.xlsx, sheet_name='2019')
-    """
-
-    df = read_file(file, sheet_name)
-    results = summarize_data(df)
-    results.to_csv(os.path.join(dir, 'results.csv'))
-    return
