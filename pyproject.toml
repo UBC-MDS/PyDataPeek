@@ -5,7 +5,7 @@ description = ""
 authors = ["Miro (Shangjing) HU <mirohu@outlook.com>"]
 license = "MIT"
 packages = [
-    { include = "PackageName"},
+    { include = "PyDataPeek"},
 ]
 readme = "README.md"
 homepage = "https://github.com/UBC-MDS/PyDataPeek"
