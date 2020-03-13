@@ -4,7 +4,7 @@ import seaborn as sns
 from xlrd import XLRDError
 
 
-def read_file(file, sheet_name=0):
+def _read_file(file, sheet_name=0):
     """Helper function used to read the file and return a pandas dataframe.
 
     Checks if file type is a .csv or excel. If not, returns a ValueError.
@@ -32,7 +32,7 @@ def read_file(file, sheet_name=0):
     return df
 
 
-def make_plot(df):
+def _make_plot(df):
     """Helper function used to create heatmap showing missing values in
     a dataframe.
 

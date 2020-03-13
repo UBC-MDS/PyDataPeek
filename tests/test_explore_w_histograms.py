@@ -37,7 +37,7 @@ def make_files(tmpdir_factory):
 
 def test_csv_input(make_files):
     path_to_file = str(make_files.join('df.csv'))
-    pd.testing.assert_frame_equal(histograms.read_file(
+    pd.testing.assert_frame_equal(histograms._read_file(
         path_to_file), pd.read_csv(path_to_file))
 
 # tests the read_file() for .xls and .xlsx input
@@ -45,11 +45,11 @@ def test_csv_input(make_files):
 
 def test_excel_input(make_files):
     path_to_file = str(make_files.join('df.xls'))
-    pd.testing.assert_frame_equal(histograms.read_file(
+    pd.testing.assert_frame_equal(histograms._read_file(
         path_to_file), pd.read_excel(path_to_file))
     # test another excel file format '.xlsx'
     path_to_file = str(make_files.join('df.xls'))
-    pd.testing.assert_frame_equal(histograms.read_file(
+    pd.testing.assert_frame_equal(histograms._read_file(
         path_to_file + 'x'), pd.read_excel(path_to_file + 'x'))
 
 # tests the explore_w_histograms() for other input to see if it raises errors
@@ -57,7 +57,7 @@ def test_excel_input(make_files):
 
 def test_other_input(make_files):
     with pytest.raises(ValueError):
-        histograms.explore_w_histograms(str(make_files.join('df.pkl')), ['C'])
+        pdp.explore_w_histograms(str(make_files.join('df.pkl')), ['C'])
 
 # test to see if the plots are saved
 
@@ -72,6 +72,6 @@ def test_saved_plot(make_files):
 def test_non_numeric_column(make_files):
     path_to_file = str(make_files.join('df.csv'))
     df = pd.read_csv(path_to_file)
-    assert histograms.is_numeric(df, 'C')
-    assert not histograms.is_numeric(df, 'E')
+    assert histograms._is_numeric(df, 'C')
+    assert not histograms._is_numeric(df, 'E')
     assert not os.path.isfile('E_chart.png')

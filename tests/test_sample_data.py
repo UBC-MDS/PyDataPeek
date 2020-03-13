@@ -47,7 +47,7 @@ def make_files(tmpdir_factory):
 
 def test_csv_input(make_files):
     path_to_file = str(make_files.join('df.csv'))
-    pd.testing.assert_frame_equal(sample.read_file(
+    pd.testing.assert_frame_equal(sample._read_file(
         path_to_file), pd.read_csv(path_to_file))
 
 # test that function reads xls and xlsx
@@ -55,10 +55,10 @@ def test_csv_input(make_files):
 
 def test_excel_input(make_files):
     path_to_file = str(make_files.join('df.xls'))
-    pd.testing.assert_frame_equal(sample.read_file(
+    pd.testing.assert_frame_equal(sample._read_file(
         path_to_file), pd.read_excel(path_to_file))
     # test another excel file format '.xlsx'
-    pd.testing.assert_frame_equal(sample.read_file(
+    pd.testing.assert_frame_equal(sample._read_file(
         path_to_file + 'x'), pd.read_excel(path_to_file + 'x'))
 
 # test that other file types raise errors
@@ -66,14 +66,14 @@ def test_excel_input(make_files):
 
 def test_other_input(make_files):
     with pytest.raises(XLRDError):
-        sample.sample_data(str(make_files.join('df.pkl')))
+        pdp.sample_data(str(make_files.join('df.pkl')))
 
 # check that sample record is correctly obtained from data
 
 
 def test_sample_record():
     df = create_data()
-    results = sample.summarize_data(df)
+    results = sample._summarize_data(df)
     assert df.iloc[1].equals(results['sample_record'])
 
 # check that column names are correctly obtained from data
@@ -81,7 +81,7 @@ def test_sample_record():
 
 def test_column_names():
     df = create_data()
-    results = sample.summarize_data(df)
+    results = sample._summarize_data(df)
     assert df.columns.equals(results.index)
 
 # check that data types are accurately obtained from data
@@ -89,7 +89,7 @@ def test_column_names():
 
 def test_data_type():
     df = create_data()
-    results = sample.summarize_data(df)
+    results = sample._summarize_data(df)
     assert df.dtypes.equals(results['data_type'])
 
 # test that float64 data types are summarized by median value
@@ -97,7 +97,7 @@ def test_data_type():
 
 def test_summary_float64():
     df = create_data()
-    results = sample.summarize_data(df)
+    results = sample._summarize_data(df)
     df_result = 'median value: ' + str(np.median(df['A']))
     test_result = results['summary'][0]
     assert df_result == test_result
@@ -107,7 +107,7 @@ def test_summary_float64():
 
 def test_summary_other():
     df = create_data()
-    results = sample.summarize_data(df)
+    results = sample._summarize_data(df)
     test_result_datetime = results['summary'][1]
     test_result_category = results['summary'][4]
     assert test_result_datetime == 'No summary available'
@@ -118,7 +118,7 @@ def test_summary_other():
 
 def test_summary_float32():
     df = create_data()
-    results = sample.summarize_data(df)
+    results = sample._summarize_data(df)
     df_result = 'median value: ' + str(np.median(df['C']))
     test_result = results['summary'][2]
     assert df_result == test_result
@@ -128,7 +128,7 @@ def test_summary_float32():
 
 def test_summary_int32():
     df = create_data()
-    results = sample.summarize_data(df)
+    results = sample._summarize_data(df)
     df_result = 'unique values: ' + str(df['D'].unique().size)
     test_result = results['summary'][3]
     assert df_result == test_result
@@ -138,7 +138,7 @@ def test_summary_int32():
 
 def test_summary_string():
     df = create_data()
-    results = sample.summarize_data(df)
+    results = sample._summarize_data(df)
     df_result = "average length of string: " + \
         str(round(np.mean([len(str(i)) for i in df['F']]), 1))
     test_result = results['summary'][5]

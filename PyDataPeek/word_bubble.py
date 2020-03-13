@@ -4,7 +4,7 @@ import pandas as pd
 from xlrd import XLRDError
 
 
-def read_file(file, sheet_name=0):
+def _read_file(file, sheet_name=0):
     """Helper function used to read the file and return a pandas dataframe.
     Checks if file type is a .csv or excel. If not, returns a ValueError.
     Parameters
@@ -29,7 +29,7 @@ def read_file(file, sheet_name=0):
     return df
 
 
-def make_formated_words(df):
+def _make_formated_words(df):
     """Helper function used to make the column into a vector that can be
     read into the cloudword function object.
 
@@ -66,7 +66,7 @@ def make_formated_words(df):
     return formated_words, stopwords
 
 
-def make_cloud(formated_words,
+def _make_cloud(formated_words,
                stopwords, max_words, width, height):
     """Return an plt of a word bubble of qualitative responses
     (text) from a column(s) from a spreadsheet.

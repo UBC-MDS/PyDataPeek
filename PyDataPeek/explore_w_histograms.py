@@ -3,7 +3,7 @@ import altair as alt
 from xlrd import XLRDError
 
 
-def read_file(file, sheet_name=0):
+def _read_file(file, sheet_name=0):
     """
     Helper function used to read the file and return a pandas dataframe.
     Checks if file type is a .csv or excel. If not,
@@ -30,7 +30,7 @@ def read_file(file, sheet_name=0):
     return df
 
 
-def is_numeric(df, column):
+def _is_numeric(df, column):
     """
     Helper function used to take a dataframe, a column name
     Returns True if the column is numerical, False otherwise
@@ -55,7 +55,7 @@ def is_numeric(df, column):
         return False
 
 
-def make_save_histogram(df, column):
+def _make_save_histogram(df, column):
     """
     Helper function used to take a dataframe, a numerical column name,
     and returns a png file of histogram(s)

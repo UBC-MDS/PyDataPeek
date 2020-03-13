@@ -3,7 +3,7 @@ import numpy as np
 from xlrd import XLRDError
 
 
-def read_file(file, sheet_name=0):
+def _read_file(file, sheet_name=0):
     """Helper function used to read the file and return a pandas dataframe.
 
     Checks if file type is a .csv or excel. If not, returns a ValueError.
@@ -34,7 +34,7 @@ def read_file(file, sheet_name=0):
     return df
 
 
-def summarize_data(df):
+def _summarize_data(df):
     """Helper function that returns  data table showing column names in rows,
     an example record, column data types and summary statistics for numerical
     and text data

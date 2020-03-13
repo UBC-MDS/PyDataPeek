@@ -26,7 +26,7 @@ def make_files(tmpdir_factory):
     df.to_csv(str(fn.join('df.csv')))
     df.to_excel(str(fn.join('df.xls')))
     df.to_excel(str(fn.join('df.xlsx')))
-    # bubble.word_bubble(str(make_files.join('df.pkl')))
+    # pdp.word_bubble(str(make_files.join('df.pkl')))
 
     # Create and save image
     pdp.word_bubble(file=str(fn.join('df.csv')),
@@ -37,17 +37,17 @@ def make_files(tmpdir_factory):
 def test_csv_input(make_files):
     # test if the make_file can read a .csv
     path_to_file = str(make_files.join('df.csv'))
-    pd.testing.assert_frame_equal(bubble.read_file(
+    pd.testing.assert_frame_equal(bubble._read_file(
         path_to_file), pd.read_csv(path_to_file))
 
 
 def test_excel_input(make_files):
     # test if the make_file can read a .xls
     path_to_file = str(make_files.join('df.xls'))
-    pd.testing.assert_frame_equal(bubble.read_file(
+    pd.testing.assert_frame_equal(bubble._read_file(
         path_to_file), pd.read_excel(path_to_file))
     # test another excel file format '.xlsx'
-    pd.testing.assert_frame_equal(bubble.read_file(
+    pd.testing.assert_frame_equal(bubble._read_file(
         path_to_file + 'x'), pd.read_excel(path_to_file + 'x'))
 
 
@@ -63,8 +63,8 @@ def test_plot():
     max_word = 50
     width = 800
     height = 800
-    formated_words, stopwords = bubble.make_formated_words(df)
-    assert isinstance(bubble.make_cloud(
+    formated_words, stopwords = bubble._make_formated_words(df)
+    assert isinstance(bubble._make_cloud(
         formated_words, stopwords, max_word,
         width, height), matplotlib.figure.Figure)
 
