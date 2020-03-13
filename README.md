@@ -74,6 +74,7 @@ pdp.sample_data('example.csv`)
 pdp.explore_w_histograms('example.csv', columns_list=['C'])
 ```
 **Output**
+
 A `.png` file in your working directory named `C_chart.png`:
 
 ![](usage/C_chart.png)
@@ -84,9 +85,10 @@ A `.png` file in your working directory named `C_chart.png`:
 pdp.word_bubble('example.csv', column="movies")
 ```
 **Output**
-A `.png` file in your working directory named `C_wordcloud.png`:
 
-![](usage/wordcloud.png)
+A `.png` file in your working directory named `0_wordcloud.png`:
+
+![](usage/0_wordcloud.png)
 
 
 
