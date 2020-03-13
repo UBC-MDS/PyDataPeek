@@ -80,4 +80,3 @@ def make_save_histogram(df, column):
     )
 
     chart.save(column + '_chart' + '.png')
-

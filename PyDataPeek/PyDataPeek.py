@@ -3,9 +3,6 @@ from PyDataPeek import sample_data as sample
 from PyDataPeek import explore_w_histograms as histo
 from PyDataPeek import word_bubble as word
 
-import pandas as pd
-import os
-
 def missing_data_overview(file, sheet_name=0, dir=''):
     """Return a heatmap showing the missing values in the file.
 
@@ -34,7 +31,6 @@ def missing_data_overview(file, sheet_name=0, dir=''):
     fig.savefig(f"{dir}{sheet_name}_heatmap.png", orientation='landscape',
                 optimize=True, pad_inches=2, bbox_inches='tight')
     return
-
 
 
 def sample_data(file, sheet_name=0, dir=''):
@@ -157,4 +153,4 @@ def word_bubble(file, sheet_name=0, img_dir='', column='',
     p = plt.savefig(f"{img_dir}{sheet_name}_wordcloud.png",
                     orientation='landscape', optimize=True, pad_inches=2,
                     bbox_inches='tight')
-    return
+    return p

@@ -106,4 +106,3 @@ def make_cloud(formated_words,
     plt.tight_layout(pad=0)
 
     return fig
-
