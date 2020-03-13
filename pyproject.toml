@@ -2,7 +2,7 @@
 name = "pydatapeek"
 version = "0.1.3"
 description = ""
-authors = ["Miro (Shangjing) HU <mirohu@outlook.com>"]
+authors = ["Alistair Clark, Shangjing HU, Thomas Pin, Monique Wong"]
 license = "MIT"
 packages = [
     { include = "PyDataPeek"},
