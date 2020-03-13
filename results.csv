@@ -1,8 +1,0 @@
-,sample_record,data_type,summary
-Unnamed: 0,1,int64,unique values: 4
-A,1.0,float64,median value: 1.0
-B,2013-01-02,object,average length of string: 10.0
-C,1.0,float64,median value: 1.0
-D,3,int64,unique values: 1
-E,train,object,average length of string: 4.2
-F,foo,object,average length of string: 3.0
