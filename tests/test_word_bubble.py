@@ -1,4 +1,5 @@
-from PyDataPeek import PyDataPeek as bubble
+from PyDataPeek import PyDataPeek as pdp
+from PyDataPeek import word_bubble as bubble
 
 import pytest
 import matplotlib
@@ -28,7 +29,7 @@ def make_files(tmpdir_factory):
     # bubble.word_bubble(str(make_files.join('df.pkl')))
 
     # Create and save image
-    bubble.word_bubble(file=str(fn.join('df.csv')),
+    pdp.word_bubble(file=str(fn.join('df.csv')),
                        img_dir=str(fn), column="F")
     return fn
 
@@ -53,7 +54,7 @@ def test_excel_input(make_files):
 def test_other_input(make_files):
     # Raises an error a file extension does not exists
     with pytest.raises(ValueError):
-        bubble.word_bubble(str(make_files.join('df.pkl')), sheet_name="")
+        pdp.word_bubble(str(make_files.join('df.pkl')), sheet_name="")
 
 
 def test_plot():

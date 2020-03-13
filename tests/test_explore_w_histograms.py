@@ -1,4 +1,5 @@
-from PyDataPeek import PyDataPeek as histograms
+from PyDataPeek import PyDataPeek as pdp
+from PyDataPeek import explore_w_histograms as histograms
 import pandas as pd
 import numpy as np
 import pytest
@@ -27,8 +28,8 @@ def make_files(tmpdir_factory):
     df.to_excel(str(fn.join('df.xlsx')), sheet_name='abc')
 
     # Create and save image
-    histograms.explore_w_histograms(str(fn.join('df.csv')), columns_list=['C'])
-    histograms.explore_w_histograms(str(fn.join('df.csv')), columns_list=['E'])
+    pdp.explore_w_histograms(str(fn.join('df.csv')), columns_list=['C'])
+    pdp.explore_w_histograms(str(fn.join('df.csv')), columns_list=['E'])
     return fn
 
 # tests the read_file() for .csv input

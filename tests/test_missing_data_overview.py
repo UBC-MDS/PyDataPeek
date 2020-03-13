@@ -1,4 +1,5 @@
-from PyDataPeek import PyDataPeek as missing
+from PyDataPeek import PyDataPeek as pdp
+from PyDataPeek import missing_data_overview as missing
 
 import pytest
 import pandas as pd
@@ -28,8 +29,8 @@ def make_files(tmpdir_factory):
     df.to_excel(str(fn.join('df.xlsx')), sheet_name='abc')
 
     # Create and save image
-    missing.missing_data_overview(str(fn.join('df.csv')), dir=str(fn))
-    missing.missing_data_overview(
+    pdp.missing_data_overview(str(fn.join('df.csv')), dir=str(fn))
+    pdp.missing_data_overview(
         str(fn.join('df.csv')), dir=str(fn), sheet_name='abc')
     return fn
 

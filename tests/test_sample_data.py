@@ -1,4 +1,5 @@
-from PyDataPeek import PyDataPeek as sample
+from PyDataPeek import PyDataPeek as pdp
+from PyDataPeek import sample_data as sample
 
 import pytest
 import pandas as pd
@@ -37,8 +38,8 @@ def make_files(tmpdir_factory):
     df.to_excel(str(fn.join('df.xlsx')), sheet_name='abc')
 
     # Create and save csv
-    sample.sample_data(str(fn.join('df.csv')))
-    sample.sample_data(str(fn.join('df.csv')), sheet_name='abc')
+    pdp.sample_data(str(fn.join('df.csv')))
+    pdp.sample_data(str(fn.join('df.csv')), sheet_name='abc')
     return fn
 
 # test that function reads csv
