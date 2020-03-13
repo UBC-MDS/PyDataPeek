@@ -54,31 +54,3 @@ def make_plot(df):
     return fig
 
 
-def missing_data_overview(file, sheet_name=0, dir=''):
-    """Return a heatmap showing the missing values in the file.
-
-    Parameters
-    ----------
-    file : str
-        the name of the file, including the filetype extension
-    sheet_name : int, optional
-        if passing an excel file, the name of the sheet to analyze,
-        by default 0
-    dir : str, optional
-        the directory where the file should be saved, by default ''
-
-    Returns
-    -------
-    .png file
-        heatmap of missing values, as a .png file
-
-    Example
-    -------
-    >>> missing_data_overview("customers.xlsx", sheet_name='2019',
-        dir='report')
-    """
-    df = read_file(file, sheet_name=sheet_name)
-    fig = make_plot(df)
-    fig.savefig(f"{dir}{sheet_name}_heatmap.png", orientation='landscape',
-                optimize=True, pad_inches=2, bbox_inches='tight')
-    return
