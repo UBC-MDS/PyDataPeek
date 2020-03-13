@@ -1,4 +1,4 @@
-from PyDataPeek import word_bubble as bubble
+from PyDataPeek import PyDataPeek as bubble
 
 import pytest
 import matplotlib

@@ -1,4 +1,4 @@
-from PyDataPeek import explore_w_histograms as histograms
+from PyDataPeek import PyDataPeek as histograms
 import pandas as pd
 import numpy as np
 import pytest

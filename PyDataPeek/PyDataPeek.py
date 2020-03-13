@@ -156,4 +156,3 @@ def word_bubble(file, sheet_name=0, img_dir='', column='',
                     orientation='landscape', optimize=True, pad_inches=2,
                     bbox_inches='tight')
     return p
-    

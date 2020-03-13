@@ -1,4 +1,4 @@
-from PyDataPeek import sample_data as sample
+from PyDataPeek import PyDataPeek as sample
 
 import pytest
 import pandas as pd

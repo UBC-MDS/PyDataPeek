@@ -1,4 +1,4 @@
-from PyDataPeek import missing_data_overview as missing
+from PyDataPeek import PyDataPeek as missing
 
 import pytest
 import pandas as pd
