@@ -2,10 +2,6 @@
 
 ![](https://github.com/UBC-MDS/pydatapeek/workflows/build/badge.svg) [![codecov](https://codecov.io/gh/UBC-MDS/foocat/branch/master/graph/badge.svg)](https://codecov.io/gh/UBC-MDS/pydatapeek) ![Release](https://github.com/UBC-MDS/pydatapeek/workflows/Release/badge.svg)
 
-
-test
-
-
 [![Documentation Status](https://readthedocs.org/projects/pydatapeek/badge/?version=latest)](https://pydatapeek.readthedocs.io/en/latest/?badge=latest)
 
 ### Project Proposal

@@ -1,18 +1,20 @@
 import pandas as pd
 import altair as alt
-from altair_saver import save
+from xlrd import XLRDError
 
 
 def read_file(file, sheet_name=0):
     """
     Helper function used to read the file and return a pandas dataframe.
-    Checks if file type is a .csv or excel. If not, returns a ValueError.
+    Checks if file type is a .csv or excel. If not,
+    returns a ValueError.
     Parameters
     ----------
     file : str
         the name of the file, including the filetype extension
     sheet_name : int, optional
-        if passing an excel file, the name of the sheet to analyze, by default 0
+        if passing an excel file, the name of the sheet to analyze,
+        by default 0
     Returns
     -------
     pandas.Dataframe
@@ -23,7 +25,7 @@ def read_file(file, sheet_name=0):
     else:
         try:
             df = pd.read_excel(file, sheet_name=sheet_name)
-        except:
+        except XLRDError:
             raise ValueError("Please use a valid csv or excel file.")
     return df
 
@@ -37,7 +39,7 @@ def is_numeric(df, column):
     --------
     file:
         a csv file
-    column: 
+    column:
         a column name as a string
 
 
@@ -46,7 +48,8 @@ def is_numeric(df, column):
     Bool
     """
 
-    if str(df[column].dtypes) == 'int64' or str(df[column].dtypes) == 'float64':
+    if str(df[column].dtypes) == 'int64' or \
+       str(df[column].dtypes) == 'float64':
         return True
     else:
         return False
@@ -54,14 +57,14 @@ def is_numeric(df, column):
 
 def make_save_histogram(df, column):
     """
-    Helper function used to take a dataframe, a numerical column name, 
+    Helper function used to take a dataframe, a numerical column name,
     and returns a png file of histogram(s)
 
     Parameters
     --------
     file:
         a csv file
-    column: 
+    column:
         a numerical column name as a string
 
 
@@ -72,7 +75,7 @@ def make_save_histogram(df, column):
 
     # plot and save the chart with different name
     chart = alt.Chart(df).mark_bar().encode(
-        alt.X(column+':Q', bin=True),
+        alt.X(column + ':Q', bin=True),
         alt.Y('count()')
     )
 
@@ -82,14 +85,14 @@ def make_save_histogram(df, column):
 def explore_w_histograms(file, columns_list=[], sheet_name=0):
     """
     take a csv file, a sheet name (default 0),
-    a list of numerical column names 
+    a list of numerical column names
     and returns a png file of histogram(s)
 
     Parameters
     --------
     file:
         a csv file
-    columns_list: 
+    columns_list:
         a list of numerical column names as strings, default = []
 
 
@@ -104,13 +107,14 @@ def explore_w_histograms(file, columns_list=[], sheet_name=0):
     df = read_file(file, sheet_name=0)
 
     try:
-        column = columns_list[0]
-    except:
+        columns_list[0]
+    except IndexError:
         raise ValueError("Make sure column name is in your data!")
 
     for i in range(0, len(columns_list)):
-        if is_numeric(df, columns_list[i]) == True:
+        if is_numeric(df, columns_list[i]) is True:
             make_save_histogram(df, columns_list[i])
         else:
             print(str(df[columns_list[i]]),
-                  "is not a numerical column. Please use numerical column only.")
+                  "is not a numerical column.",
+                  "Please use numerical column only.")
