@@ -30,7 +30,7 @@ def make_files(tmpdir_factory):
 
     # Create and save image
     pdp.word_bubble(file=str(fn.join('df.csv')),
-                       img_dir=str(fn), column="F")
+                    img_dir=str(fn), column="F")
     return fn
 
 
