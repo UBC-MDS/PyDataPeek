@@ -28,7 +28,7 @@ Several Python packages are available that support exploratory data analysis but
 This project is under development! Upon it's first release, it can be installed with the following instructions.
 
 ```
-pip install -i https://test.pypi.org/simple/ pydatapeek
+pip install pydatapeek --extra-index-url=https://test.pypi.org/simple/
 ```
 
 ### Usage:
