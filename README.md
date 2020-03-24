@@ -35,6 +35,7 @@ pip install pydatapeek --extra-index-url=https://test.pypi.org/simple/
 We detail an example usage of our function below. The sample data file that we have used below can be found [here](https://github.com/UBC-MDS/PyDataPeek/blob/master/usage/example.csv). The following example assumes that the file has been downloaded as `example.csv`. 
 
 #### Setup
+
 ```
 from PyDataPeek import PyDataPeek as pdp
 ```
