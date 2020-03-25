@@ -52,5 +52,4 @@ def _make_plot(df):
     plt.xlabel("Column name", fontsize=25)
     plt.title("Heatmap of missing values", fontsize=30)
     plt.tick_params(labelsize=20)
-    ax = plt.axes()
     return fig
