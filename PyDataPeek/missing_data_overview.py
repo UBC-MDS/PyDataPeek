@@ -48,7 +48,8 @@ def _make_plot(df):
     """
     fig = plt.figure(figsize=(40, 20))
     sns.heatmap(df.isnull(), cbar=False, cmap='viridis')
-    plt.ylabel("Row number", fontsize=20)
-    plt.xlabel("Column name", fontsize=20)
-    plt.title("Heatmap of missing values", fontsize=20)
+    plt.ylabel("Row number", fontsize=25)
+    plt.xlabel("Column name", fontsize=25)
+    plt.title("Heatmap of missing values", fontsize=30)
+    plt.tick_params(labelsize=20)
     return fig
