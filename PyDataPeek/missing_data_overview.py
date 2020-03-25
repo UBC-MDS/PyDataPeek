@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sns
+import numpy as np
 from xlrd import XLRDError
 
 
@@ -48,7 +49,10 @@ def _make_plot(df):
     """
     fig = plt.figure(figsize=(40, 20))
     sns.heatmap(df.isnull(), cbar=False, cmap='viridis')
-    plt.ylabel("Row number", fontsize=20)
-    plt.xlabel("Column name", fontsize=20)
-    plt.title("Heatmap of missing values", fontsize=20)
+    plt.ylabel("Row number", fontsize=25)
+    plt.xlabel("Column name", fontsize=25)
+    plt.title("Heatmap of missing values", fontsize=30)
+    plt.tick_params(labelsize=20)
+    ax = plt.axes()
+    ax.yaxis.set_major_locator(plt.AutoLocator())
     return fig
