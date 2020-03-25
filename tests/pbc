@@ -1,2 +1,0 @@
-def test_other_input(make_files):
-    with pytest.raises(ValueError):
