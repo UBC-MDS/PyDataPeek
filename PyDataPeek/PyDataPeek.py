@@ -8,7 +8,13 @@ import os
 def missing_data_overview(file, sheet_name=0, dir=''):
     """Return a heatmap showing the missing values in the file.
 
-    The heatmap returned is the same size and shape as the input dataframe, with rows along the x-axis and columns along the y-axis. "Missing values" are anything represented as NaN values when the dataframe is read into Pandas, and therefore empty strings like " " will not be recognized as missing. The heatmap shows missing values in yellow, and non-missing values in purple.
+    The heatmap returned is the same size and shape as the
+    input dataframe, with rows along the x-axis and columns
+    along the y-axis. "Missing values" are anything represented
+    as NaN values when the dataframe is read into Pandas, and
+    therefore empty strings like " " will not be recognized as
+    missing. The heatmap shows missing values in yellow, an
+    non-missing values in purple.
 
     Parameters
     ----------
