@@ -7,10 +7,10 @@
 
 ## Contributors
 
-Alistair Clark
+Alistair Clark (alistair.clark@alumni.ubc.ca)
 
 Shangjing Hu
 
 Thomas Pin
 
-Monique Wong
+Monique Wong (moniquewong@alumni.ubc.ca)
