@@ -9,7 +9,7 @@
 
 Alistair Clark (alistair.clark@alumni.ubc.ca)
 
-Shangjing Hu
+Shangjing Hu (mirohu@outlook.com)
 
 Thomas Pin
 
