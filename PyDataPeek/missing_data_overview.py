@@ -53,5 +53,4 @@ def _make_plot(df):
     plt.title("Heatmap of missing values", fontsize=30)
     plt.tick_params(labelsize=20)
     ax = plt.axes()
-    ax.yaxis.set_major_locator(plt.AutoLocator())
     return fig
