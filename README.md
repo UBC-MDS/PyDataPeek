@@ -35,7 +35,7 @@ pip install pydatapeek --extra-index-url=https://test.pypi.org/simple/
 Note that `selenium` and `chromedriver` are needed to save Altair charts. More information on installation can be found [here](https://altair-viz.github.io/user_guide/saving_charts.html).
 
 ### Usage:
-We detail an example usage of our function below. The sample data file that we have used below can be found [here](https://github.com/UBC-MDS/PyDataPeek/blob/master/usage/example.csv). The following example assumes that the file has been downloaded as `example.csv`. 
+We detail an example usage of our function below. The sample data file that we have used below can be found [here](https://github.com/UBC-MDS/PyDataPeek/blob/master/usage/example.csv). The following example assumes that the file has been downloaded as `example.csv` in the root of your working directory. 
 
 #### Setup
 
