@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "pydatapeek"
-version = "0.1.16"
+version = "0.1.17"
 description = ""
 authors = ["Alistair Clark, Shangjing HU, Thomas Pin, Monique Wong"]
 license = "MIT"
