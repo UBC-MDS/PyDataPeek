@@ -11,6 +11,6 @@ Alistair Clark (alistair.clark@alumni.ubc.ca)
 
 Shangjing Hu (mirohu@outlook.com)
 
-Thomas Pin
+Thomas Pin (mr.thomaspin@outlook.com)
 
 Monique Wong (moniquewong@alumni.ubc.ca)
